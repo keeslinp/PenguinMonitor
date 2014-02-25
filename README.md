@@ -12,3 +12,5 @@ there is really no limit to what it could do, it will hopefully become more dyna
 
 Once is it more mature, I will add in some examples and explanation of how to use the tool.
 
+Please excuse and/or explain any programming mistakes I make, I am doing this little project in order to more learn C++ and more familiarize myself with git in general.
+
