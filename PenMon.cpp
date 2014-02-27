@@ -5,16 +5,19 @@
 
 using namespace std;
 
-void escape(string& s)
+string escape(string s)
 {
+    string buff;
     for(string::iterator i = s.begin();i<s.end();i++)
     {
         if(*i == '$')
         {
-            s.insert(i-s.begin(),"\\");
-            i++;
+            buff += "\\";
         }
+        buff += *i;
+        cout << *i << i-s.begin() << endl;
     }
+    return buff;
 }
 
 int main(int argc, char *argv[])
@@ -31,11 +34,12 @@ int main(int argc, char *argv[])
                 break;
         }
     }
-    escape(source);
-    cout << (char*)source.c_str() << endl;
+    string escaped = escape(source);
+    cout << system((char*)escaped.c_str()) << endl;
     
         
     cout << "I will check every " << interval <<" seconds" << endl;
+    
    
     return 0;
 }
