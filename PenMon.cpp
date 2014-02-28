@@ -2,22 +2,22 @@
 #include <string>
 #include <sstream>
 #include <stdlib.h>
+#include <thread>
+#include <chrono>
 
 using namespace std;
 
-string escape(string s)
+//Function for easy interaction with terminal
+string command(char c[])
 {
-    string buff;
-    for(string::iterator i = s.begin();i<s.end();i++)
-    {
-        if(*i == '$')
-        {
-            buff += "\\";
-        }
-        buff += *i;
-        cout << *i << i-s.begin() << endl;
+    string answer("");
+    char buff[256];
+    FILE *fp = popen(c,"r");
+    while ( fgets( buff, 256, fp ) != NULL ) {
+      answer += buff;
     }
-    return buff;
+    pclose(fp);
+    return answer;
 }
 
 int main(int argc, char *argv[])
@@ -34,12 +34,18 @@ int main(int argc, char *argv[])
                 break;
         }
     }
-    string escaped = escape(source);
-    cout << system((char*)escaped.c_str()) << endl;
-    
-        
+//Store original value
+    string answer = command((char*)source.c_str());
+    cout << "starting value is: \n" << answer << endl;
     cout << "I will check every " << interval <<" seconds" << endl;
-    
+//Main checking loop
+    while(answer==command((char*)source.c_str()))
+    {
+    //Wait desired amount
+        this_thread::sleep_for(chrono::seconds(interval));
+    }
+//Respong accordingly
+    cout << command((char*)response.c_str()) << endl;
    
     return 0;
 }
