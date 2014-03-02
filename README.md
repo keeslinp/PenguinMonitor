@@ -14,3 +14,24 @@ Once is it more mature, I will add in some examples and explanation of how to us
 
 Please excuse and/or explain any programming mistakes I make, I am doing this little project in order to more learn C++ and more familiarize myself with git in general.
 
+
+
+------DOCUMENTATION-------
+
+USAGE:
+
+<Bash Command Trigger> <Bash Command Response> <Options>
+
+Bash commands should be in quotations.
+Options:
+
+-u seconds -> Specify the number of seconds between each check (default is 300 seconds)
+
+-r -> this flag makes the program continue to check for the trigger even after it has been triggered once
+
+EXAMPLE USAGE:
+
+Use Penguin Monitor to notify all of the users each time a file has changed:
+
+  PenMon "cat test.txt" "echo The file has changed | wall" -u 60 -r
+
