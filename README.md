@@ -34,4 +34,8 @@ EXAMPLE USAGE:
 Use Penguin Monitor to notify all of the users each time a file has changed:
 
   PenMon "cat test.txt" "echo The file has changed | wall" -u 60 -r
+  
+Use Penguin Monitor to keep track of public IP address and keep a record of past ones
+  
+  PenMon "curl wtfismyip.com/text" "curl wtfismyip.com/text >> log.txt" -u 360 -r
 
